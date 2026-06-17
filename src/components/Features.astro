@@ -1,0 +1,80 @@
+---
+import { t, type Language } from '../i18n/utils';
+
+interface Props {
+  lang: Language;
+}
+
+const { lang } = Astro.props;
+
+const features = [
+  {
+    icon: '⚡',
+    titleKey: 'features.fast.title',
+    descKey: 'features.fast.description',
+  },
+  {
+    icon: '🔒',
+    titleKey: 'features.secure.title',
+    descKey: 'features.secure.description',
+  },
+  {
+    icon: '🔍',
+    titleKey: 'features.seo.title',
+    descKey: 'features.seo.description',
+  },
+  {
+    icon: '🔥',
+    titleKey: 'features.firebase.title',
+    descKey: 'features.firebase.description',
+  },
+];
+---
+
+<section id="features" class="py-20 sm:py-32 bg-slate-50 dark:bg-slate-900">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-16">
+      <h2 class="text-4xl sm:text-5xl font-bold text-slate-900 dark:text-white mb-4">
+        {t(lang, 'features.title')}
+      </h2>
+      <p class="text-lg text-slate-600 dark:text-slate-300">
+        Everything you need to build amazing static sites
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+      {features.map((feature, index) => (
+        <div
+          class="p-6 rounded-xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 hover:shadow-lg hover:scale-105 transition-all duration-300"
+          style={`animation-delay: ${index * 0.1}s`}
+        >
+          <div class="text-4xl mb-4">{feature.icon}</div>
+          <h3 class="text-lg font-semibold text-slate-900 dark:text-white mb-2">
+            {t(lang, feature.titleKey)}
+          </h3>
+          <p class="text-slate-600 dark:text-slate-400">
+            {t(lang, feature.descKey)}
+          </p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  @keyframes slideUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  div {
+    animation: slideUp 0.6s ease-out forwards;
+    opacity: 0;
+  }
+</style>

@@ -1,0 +1,69 @@
+---
+import LanguageSwitcher from './LanguageSwitcher';
+import { t, type Language } from '../i18n/utils';
+
+interface Props {
+  lang: Language;
+}
+
+const { lang } = Astro.props;
+---
+
+<header class="sticky top-0 z-40 w-full border-b border-slate-200 dark:border-slate-800 bg-white/80 dark:bg-slate-950/80 backdrop-blur-sm">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex justify-between items-center h-16">
+      <!-- Logo and Branding -->
+      <div class="flex items-center gap-2">
+        <div class="w-8 h-8 bg-gradient-to-br from-blue-500 to-purple-600 rounded-lg flex items-center justify-center">
+          <span class="text-white font-bold text-lg">S</span>
+        </div>
+        <div class="flex flex-col">
+          <h1 class="text-lg font-bold text-slate-900 dark:text-white">
+            {t(lang, 'header.title')}
+          </h1>
+          <p class="text-xs text-slate-500 dark:text-slate-400">
+            {t(lang, 'header.subtitle')}
+          </p>
+        </div>
+      </div>
+
+      <!-- Navigation -->
+      <nav class="hidden md:flex items-center gap-8">
+        <a href={`/${lang}`} class="text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white transition-colors">
+          {t(lang, 'nav.home')}
+        </a>
+        <a href={`/${lang}#features`} class="text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white transition-colors">
+          {t(lang, 'nav.features')}
+        </a>
+        <a href={`/${lang}/builder`} class="text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white transition-colors">
+          {t(lang, 'nav.builder')}
+        </a>
+        <a href={`/${lang}/docs`} class="text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white transition-colors">
+          {t(lang, 'nav.docs')}
+        </a>
+      </nav>
+
+      <!-- Language Switcher -->
+      <div class="flex items-center gap-4">
+        <LanguageSwitcher client:load currentLang={lang} onLanguageChange={() => {}} />
+      </div>
+    </div>
+  </div>
+</header>
+
+<style>
+  header {
+    animation: slideDown 0.3s ease-out;
+  }
+
+  @keyframes slideDown {
+    from {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+</style>

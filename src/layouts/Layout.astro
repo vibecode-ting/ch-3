@@ -1,0 +1,81 @@
+---
+import Header from '../components/Header.astro';
+import { type Language } from '../i18n/utils';
+
+interface Props {
+  title: string;
+  lang: Language;
+}
+
+const { title, lang } = Astro.props;
+---
+
+<!doctype html>
+<html lang={lang}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content="Static Sites Builder with myanmardev.com" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+  </head>
+  <body class="bg-white dark:bg-slate-950 text-slate-900 dark:text-slate-50">
+    <Header lang={lang} />
+    <main class="min-h-screen">
+      <slot />
+    </main>
+    <footer class="border-t border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
+          <div>
+            <h3 class="font-semibold text-slate-900 dark:text-white mb-4">Product</h3>
+            <ul class="space-y-2 text-sm text-slate-600 dark:text-slate-400">
+              <li><a href="#" class="hover:text-slate-900 dark:hover:text-white transition-colors">Features</a></li>
+              <li><a href="#" class="hover:text-slate-900 dark:hover:text-white transition-colors">Pricing</a></li>
+              <li><a href="#" class="hover:text-slate-900 dark:hover:text-white transition-colors">Security</a></li>
+            </ul>
+          </div>
+          <div>
+            <h3 class="font-semibold text-slate-900 dark:text-white mb-4">Company</h3>
+            <ul class="space-y-2 text-sm text-slate-600 dark:text-slate-400">
+              <li><a href="#" class="hover:text-slate-900 dark:hover:text-white transition-colors">About</a></li>
+              <li><a href="#" class="hover:text-slate-900 dark:hover:text-white transition-colors">Blog</a></li>
+              <li><a href="#" class="hover:text-slate-900 dark:hover:text-white transition-colors">Careers</a></li>
+            </ul>
+          </div>
+          <div>
+            <h3 class="font-semibold text-slate-900 dark:text-white mb-4">Legal</h3>
+            <ul class="space-y-2 text-sm text-slate-600 dark:text-slate-400">
+              <li><a href="#" class="hover:text-slate-900 dark:hover:text-white transition-colors">Privacy</a></li>
+              <li><a href="#" class="hover:text-slate-900 dark:hover:text-white transition-colors">Terms</a></li>
+              <li><a href="#" class="hover:text-slate-900 dark:hover:text-white transition-colors">Contact</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="border-t border-slate-200 dark:border-slate-800 pt-8 flex flex-col md:flex-row justify-between items-center">
+          <p class="text-sm text-slate-600 dark:text-slate-400">
+            © 2026 Static Sites Builder. All rights reserved.
+          </p>
+          <p class="text-sm text-slate-600 dark:text-slate-400">
+            Made with ❤️ for Myanmar Developers
+          </p>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
+
+<style is:global>
+  @tailwind base;
+  @tailwind components;
+  @tailwind utilities;
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+</style>
