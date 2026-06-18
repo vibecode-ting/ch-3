@@ -9,6 +9,7 @@ export default defineConfig({
   ],
   output: 'static',
   site: 'https://myanmardev.com',
+  base: '/personal_project_for_ch-3/',
   vite: {
     css: {
       postcss: './postcss.config.mjs',
